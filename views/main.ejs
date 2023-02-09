@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="happy.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <title>TAP RATIO</title>
+    <style>
+        .parent{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        
+        }
+    .btn{
+        overflow: hidden;
+        color: #fff;
+        border-radius: 30px;
+        box-shadow: 0px -0px 0px 0px
+        rgba(143, 64,248, .5),0px 0px 0px 0px
+        rgba(39,200,255,.5);
+    }
+    .btn:hover{
+        transform: translate(0,-6px);
+        box-shadow: 10px,-10px 25px 0px rgba(143, 64,248, .25),
+        -10px,10px 25px 0px rgba(39,200,255,.25);
+    }
+    .btn:hover::after{
+        transform: rotate(150deg);
+    }
+
+.div1 { grid-area: 1 / 5 / 2 / 6; }
+    </style>
+  
+</head>
+<body style=" background-color: #3e54a0; color: whitesmoke;"></body>
+    <h1>Home</h1>
+<body >
+        <div class="parent">
+            <a href="mood">
+            <button class="btn">
+                mood
+            </button>
+
+            </a>
+
+            <a href="task">
+            <button class="btn">
+                task
+            </button>
+            </a>
+
+            <a href="todo">
+            <button class="btn">
+                todo list
+            </button>
+
+            </a>
+
+            <a href="assessment">
+            <button class="btn">
+                assessment
+            </button>
+
+            </a>
+        </div>
+
+   
+
+   
+
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="set_cf.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAP RATIO | mood</title>
+    
+    <style>
+         .sad{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #6f85bf ;
+            color: whitesmoke;
+            margin: 10px;
+            padding: 20px;
+        }
+        .so{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #86be56;
+            color: whitesmoke;
+            margin: 10px;
+            padding: 20px;
+            
+        }
+        .happy{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f8c861;
+            color:whitesmoke;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        .stress{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: grey;
+            color: whitesmoke;
+            margin: 10px;
+            padding: 20px;
+        }
+        .angry{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #e27555;
+            color: whitesmoke;
+            margin: 10px;
+            padding: 20px;
+        }
+       .terrible{
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #a452aa ;
+        color: whitesmoke;
+        margin: 10px;
+        padding: 20px;
+       }
+
+       .sm{
+        font-family: Arial, Helvetica, sans-serif;
+        
+        margin: 10px;
+        padding: 20px;
+       }
+
+
+
+    </style>
+</head>
+<body style=" background-color: #3e54a0; color: whitesmoke;"></body>
+
+    <h1>It' a good day, isn't it</h1>
+    <h2>Would you mind telling us how do you feel today</h2>
+           
+    <form id="mood" 
+    action="/mood_history"
+    method="POST">
+    <!-- enctype="multipart/form-data"> -->
+    
+
+        <div class="happy">
+            <h2>happy</h2>
+            <h3>I'm feel so good</h3>
+            <input type="radio" name="happy" value="happy" > Happy
+    
+         </div>    
+         <div class="so">
+            <h2>So so</h2>
+            <input type="radio"  name="so" value="so so"> So so
+         </div>    
+
+         <div class="stress">
+            <h2>Stress</h2>
+            <input type="radio" name="stress"  value="stress">Stress
+    
+         </div>    
+         <div class="angry">
+            <h2>Angry</h2>
+            <input type="radio" name="angry"  value="angry" >Angry
+         </div> 
+        <div class="sad">
+            <h2>Sad</h2>
+            <input type="radio" name="sad" value="sad" >Sad
+    
+         </div> 
+         <div class="terrible">
+            <h2>Terrible</h2>
+            <input type="radio" name="terrible" value="terrible" >Terrible
+    
+         </div> 
+
+         <div class="sm">
+            <button type="submit" >done</button>
+        </div>
+         
+    </form>
+
+
+   
+
+</body>
+</html>
