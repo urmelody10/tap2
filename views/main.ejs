@@ -7,38 +7,70 @@
     <title>TAP RATIO | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        width: 200px;
-        background-color: #f1f1f1;
+      h1 {
+      text-align: center;
       }
+ul {
+          list-style-type: none;
+          margin: 10;
+          padding: 20;
+          overflow: hidden;
+          background-color: #0f1554;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          border-radius: 25px;
+          display: block;
+          color: #ffffff;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          
+        }
+        
+        li a:hover:not(.active) {
+          background-color: #141a5f;
+        }
+        
+        .active {
+          background-color: #141a5f;
+        }
 
-      li a {
-        display: block;
-        color: #000;
-        padding: 8px 16px;
-        text-decoration: none;
-      }
+        .what_is {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          grid-column-gap: 0px;
+          grid-row-gap: 0px;
+        }
 
-      /* Change the link color on hover */
-      li a:hover {
-        background-color: #555;
-        color: white;
-      }
+        .div1 { grid-area: 4 / 1 / 5 / 2; }
+        .div2 { grid-area: 4 / 2 / 5 / 3; }
+
     </style>
         </head>
-        <body>
+        <body style=" background-color: #cde0ef; color: #0c3756;"></body>
         <h1>TAP RATIO</h1>
         <ul>
           <li><a href="mood">Mood</a></li>
           <li><a href="task">Add task</a></li>
-          <li><a href="assessment">Assessment</a></li>
+          <li><a href="assessment">Assignment</a></li>
           <li><a href="todo">To do today</a></li>
         </ul>
         
-        </body>
+        <h3>What is TAP RATIO</h3>
+
+
+
+
+
+
+
+        
         </html>
         
         
