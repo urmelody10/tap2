@@ -8,11 +8,54 @@
     <title>TAP RATIO | task</title>
     <link rel="stylesheet" href="set_cf.css">
     <style>
-       
+      h1 {
+      text-align: center;
+      }
+ul {
+          list-style-type: none;
+          margin: 10;
+          padding: 20;
+          overflow: hidden;
+          background-color: #0f1554;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          border-radius: 25px;
+          display: block;
+          color: #ffffff;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          
+        }
+        
+        li a:hover:not(.active) {
+          background-color: #141a5f;
+        }
+        
+        .active {
+          background-color: #141a5f;
+        }
+
+        .what_is {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          grid-column-gap: 0px;
+          grid-row-gap: 0px;
+        }
+
+        .div1 { grid-area: 4 / 1 / 5 / 2; }
+        .div2 { grid-area: 4 / 2 / 5 / 3; }
+
     </style>
     
 </head>
-<body >
+  <body style=" background-color: #cde0ef; color: #0c3756;"></body>
     <h1>add task</h1>
 
 
@@ -33,5 +76,5 @@
 
 
       </form>
-</body>
+s
 </html>
