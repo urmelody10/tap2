@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
     name: String,
-    mood: String,
+    mood: Array,
     assessment: String,
     priority: String,
 
