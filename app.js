@@ -1,7 +1,3 @@
-
-
-
-
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -12,11 +8,12 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const products = require('./models/Product');
 const overried = require('method-override');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const { findByUsername } = require('./models/Product');
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://admin_urMelody:wansib@tap.k9pzawb.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://admin_urMelody:wansib@tap.k9pzawb.mongodb.net/test')
         .then(() => console.log('connection successfully!!!!!!!!!!!!!!!!!!!'))
         .catch((err) => console.error(err))
 
@@ -61,6 +58,30 @@ app.post("/mood_history",(req,res) =>{
   res.render("mood_history",{data:data})  
 })
 
+app.get("/login",(req,res) =>{
+  res.render("loggin")
+})
+
+app.post("/login", async (req, res)=>{
+  let uname = req.body.uname;
+  let psw = req.body.psw;
+  let user = await products.find({username: uname})
+  console.log(user)
+  console.log(user.psw)
+  console.log(psw)
+  console.log(uname)
+
+  if(user){
+    if(user[0].psw == psw){
+      res.render("b_login",{data:user[0]})
+    }
+    else{
+      console.log("Password incocorect")
+
+    }
+  }
+
+})
 
 
 
