@@ -1,0 +1,14 @@
+[debug] [2023-03-07T01:36:30.759Z] ----------------------------------------------------------------------
+[debug] [2023-03-07T01:36:30.760Z] Command:       /usr/local/bin/node /opt/homebrew/bin/firebase deploy
+[debug] [2023-03-07T01:36:30.760Z] CLI Version:   11.24.0
+[debug] [2023-03-07T01:36:30.760Z] Platform:      darwin
+[debug] [2023-03-07T01:36:30.760Z] Node Version:  v18.13.0
+[debug] [2023-03-07T01:36:30.764Z] Time:          Tue Mar 07 2023 08:36:30 GMT+0700 (Indochina Time)
+[debug] [2023-03-07T01:36:30.765Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-07T01:36:35.788Z] Error: Timed out.
+    at Timeout._onTimeout (/opt/homebrew/lib/node_modules/firebase-tools/lib/utils.js:253:49)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+[error] 
+[error] Error: An unexpected error has occurred.

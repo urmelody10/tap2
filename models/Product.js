@@ -1,13 +1,8 @@
 const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
-    username: String,
-    mood: Array,
-    assessment: String,
-    priority: String,
-    psw:String,
-
-    
+    unane: {type:String},
+    psw:{type:String},
 })
 
 module.exports = mongoose.model('users', ProductSchema)
