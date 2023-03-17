@@ -65,7 +65,7 @@ app.use(cookieParser())
 //home///
 
 app.get("/",(req,res)=>{
-  res.render("main")
+  res.render("welcom")
 });
  app.post("/", async function(req, res){
   const user= req.cookie.username
