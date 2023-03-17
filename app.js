@@ -121,7 +121,7 @@ app.get("/login",(req,res) =>{
 })
 
 app.get("/login_successfully",(req,res) =>{
-  res.render("b_login")
+  res.render("login_successfull")
 
 })
 
@@ -150,7 +150,6 @@ app.post("/login", async function(req, res){
             //   YEAR : 1000 * 60 * 60 * 24 * 365,
             //   NEVER : 1000 * 60 * 60 * 24 * 365 * 20
             console.log('Cookies: ', req.cookies.username)
-            res.redirect('b_login');
           }else{
             console.log("Password incorrect")
             res.render("login", {loginStat: "False"})
@@ -163,7 +162,9 @@ app.post("/login", async function(req, res){
         console.log("User not found")
         res.render("login", {loginStat: "False"})
         
+        
       }
+      res.render("login_successfull")
     })
 
 
@@ -174,6 +175,7 @@ app.post("/login", async function(req, res){
 
 app.get("/register", (req, res) =>{
   res.render("register")
+
 });
 
 app.get("/signup_succes", (req,res) =>{
