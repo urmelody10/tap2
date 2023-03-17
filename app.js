@@ -62,12 +62,17 @@ app.use(cookieParser())
 
 
 
-
+//home///
 
 app.get("/",(req,res)=>{
   res.render("main")
 });
- 
+ app.post("/", async function(req, res){
+  const user= req.cookie.username
+  console.log(user)
+ })
+
+
 app.get("/mood",(req,res) =>{
   res.render("mood")
 });
@@ -90,21 +95,16 @@ app.get("/assignment",(req,res) =>{
   res.render("assignment")
 });
 
-app.post("/mood_history",(req,res) =>{
-  var data = req.body
-  data = Object.values(data)
-  res.render("mood_history",{data:data})  
-})
-
-app.get("/sent_mood", async (req,res) =>{
+app.post("/mood_history", async function(req, res){
   var data = req.body
   data = Object.values(data)
   var user = await products.find({})
   arr = user[0].mood
   arr.push(data[0])
  
-  await products.findOneAndUpdate({username:username},{$set:{mood:arr}})
+  
 })
+
 
 
 
@@ -165,6 +165,7 @@ app.post("/login", async function(req, res){
         
       }
       res.render("login_successfull")
+      console.log('Cookies: ', req.cookies.username)
     })
 
 
