@@ -96,17 +96,14 @@ app.post("/mood_history",(req,res) =>{
   res.render("mood_history",{data:data})  
 })
 
-app.post("/sent_mood", async (req,res) =>{
+app.get("/sent_mood", async (req,res) =>{
   var data = req.body
   data = Object.values(data)
-  
   var user = await products.find({})
-  
   arr = user[0].mood
-  
   arr.push(data[0])
-  console.log(arr)
-  await products.findOneAndUpdate({username:"punsib"},{$set:{mood:arr}})
+ 
+  await products.findOneAndUpdate({username:username},{$set:{mood:arr}})
 })
 
 
@@ -123,30 +120,52 @@ app.get("/login",(req,res) =>{
 
 })
 
+app.get("/login_successfully",(req,res) =>{
+  res.render("b_login")
+
+})
+
 app.post("/login", async function(req, res){
-  try {
       // check if the user exists
       const user = await products.findOne({ username: req.body.username });
+      var username= req.body.username
+      var psw = req.body.psw
       console.log(user)
-      console.log(req.body.username)
-      console.log(req.body.password)
-      if (user) {
-        //check if password matches
-        const result = req.body.password === user.password;
-        var data = req.body.username
-        if (result) {
-          res.render("b_login",{data:data});
-        } else {
-          res.status(400).json({ error: "password doesn't match" });
+      console.log(username)
+      console.log(psw)
+      console.log(user.username)
+      if(user) {
+        console.log("First Condotion Pass")
+        if(user.username == username) {
+          if (user.psw == psw){
+            console.log("Acess granted")
+            console.log("Found",user)
+            res.cookie(`username`,username, { maxAge: 30*24*60*60*1000})
+            // CookieExpiryTime
+            //   END_OF_SESSION : 0,
+            //   SECOND : 1000,
+            //   MINUTE : 1000 * 60,
+            //   HOUR : 1000 * 60 * 60,
+            //   DAY : 1000 * 60 * 60 * 24,
+            //   YEAR : 1000 * 60 * 60 * 24 * 365,
+            //   NEVER : 1000 * 60 * 60 * 24 * 365 * 20
+            console.log('Cookies: ', req.cookies.username)
+            res.redirect('b_login');
+          }else{
+            console.log("Password incorrect")
+            res.render("login", {loginStat: "False"})
+          }
+        }else{
+          console.log("Username incorrect")
+          res.render("login", {loginStat: "False"})
         }
-      } else {
-        res.status(400).json({ error: "User doesn't exist" });
+      }else{
+        console.log("User not found")
+        res.render("login", {loginStat: "False"})
+        
       }
-    } catch (error) {
-      console.log(error)
-      res.status(400).json({ error });
-    }
-});
+    })
+
 
  
   
