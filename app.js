@@ -196,25 +196,53 @@ app.post("/register",async (req,res, next)=>{
 
 
 
-
+//mood///////
 
 app.get("/mood",async(req,res) =>{
-  res.render("mood")
-  let username = cookies
-  
-  
+  let username = req.cookies.username
+  let user = await products.find({username: username})
+  let mood = req.body.mood
+
+  console.log("new mood :"+mood)
+  console.log("Check Cookie: "+req.cookies.username)
+
+
+  if(typeof user[0] !== "undefined"){
+    if(user[0].username == req.cookies.username) {
+      console.log("Check Cookie result: User exist in DB")
+      res.render("mood", {UserbyCookie: "True"})
+    }
+  }
+  else{
+    console.log("Check Cookie result: User not exist")
+    res.render("mood", {UserbyCookie:"False"})
+  }
+  console.log("new mood :"+mood)
 });
 
   app.post("/mood",async(req,res) =>{
+    
    
+  });
+  
+  
+  app.get("/mood_history",(req,res) =>{
+    res.render("mood_history")
+  });
+
+
+
+  app.post("/mood_history", async function(req, res){
+   
+
+
   });
   
   
   
   
-  
 
-
+////task/////////
 
 
 app.get("/add",(req,res) =>{
@@ -231,20 +259,5 @@ app.get("/todo",(req,res) =>{
 
 app.get("/assignment",(req,res) =>{
   res.render("assignment")
-});
-
-app.get("/mood_history",(req,res) =>{
-  res.render("mood_history")
-});
-app.post("/mood_history", async function(req, res){
-  let existUsername = await products.find({username: username})
-  var myData = new User(req.body);
-  myData.save()
-    .then(item => {
-      res.send("item saved to database");
-    })
-    .catch(err => {
-      res.status(400).send("unable to save to database");
-    });
 });
 
