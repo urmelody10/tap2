@@ -201,15 +201,17 @@ app.post("/register",async (req,res, next)=>{
 app.get("/mood",async(req,res) =>{
   let username = req.cookies.username
   let user = await products.find({username: username})
-  let mood = req.body.mood
+  let mood = req.body
 
-  console.log("new mood :"+mood)
+  console.log
   console.log("Check Cookie: "+req.cookies.username)
 
 
   if(typeof user[0] !== "undefined"){
     if(user[0].username == req.cookies.username) {
       console.log("Check Cookie result: User exist in DB")
+    
+      
       res.render("mood", {UserbyCookie: "True"})
     }
   }
@@ -217,13 +219,33 @@ app.get("/mood",async(req,res) =>{
     console.log("Check Cookie result: User not exist")
     res.render("mood", {UserbyCookie:"False"})
   }
-  console.log("new mood :"+mood)
 });
 
-  app.post("/mood",async(req,res) =>{
-    
-   
-  });
+app.post("/mood",async(req,res) =>{
+ 
+
+});
+  
+  
+
+
+app.post("/mood_history",async(req,res) =>{
+  let username = req.cookies.username
+  let mood = req.body
+  let user = await products.find({username: username})
+  if(typeof user[0] !== "undefined"){
+  if (mood[0]) {
+    console.log("Done: User Data saved")
+    products.findOneAndUpdate([{
+      
+      mood: req.body
+    }])
+    res.render("mood_history")
+}
+ 
+  console.log(mood)
+  
+}});
   
   
   app.get("/mood_history",(req,res) =>{
@@ -233,10 +255,13 @@ app.get("/mood",async(req,res) =>{
 
 
   app.post("/mood_history", async function(req, res){
+    
+    
+  }
    
 
 
-  });
+  );
   
   
   
