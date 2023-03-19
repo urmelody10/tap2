@@ -95,13 +95,16 @@ app.get("/assignment",(req,res) =>{
   res.render("assignment")
 });
 
+app.get("/mood_history",(req,res) =>{
+  res.render("mood_history")
+});
 app.post("/mood_history", async function(req, res){
   var data = req.body
   data = Object.values(data)
   var user = await products.find({})
   arr = user[0].mood
   arr.push(data[0])
- 
+  
   
 })
 
@@ -118,7 +121,7 @@ app.get("/login",(req,res) =>{
   
   res.render("login")
 
-})
+});
 
 app.get("/login_successfully",(req,res) =>{
   res.render("login_successfull")
