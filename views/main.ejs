@@ -115,14 +115,31 @@
         <h2>A nd</h2>
         <h2>P lanners</h2>
     
-    
-        <h4 class="lineUp">Do you have too much work?</h4>
-        <h4 class="lineUp">Do you have stress dealing with deadlines?</h4>
-        <h4 class="lineUp">May us help with your problems?</h4>
+        <p id="UserbyCookies" style="color: white;" hidden><%=UserbyCookies %></p>
 
       </div>
       </body>
-    
+      <script>
+        var UserbyCookies = document.getElementById("UserbyCookies").textContent
+        console.log("Check: authVar =",UserbyCookies)
+        if(document.cookie != "") {
+            console.log("Pass: First Condotion✔")
+            if(UserbyCookies == "True"){
+                console.log("Pass: Second Condotion✔")
+                document.getElementById("navlogin").style.display = "none";
+                const cookieValidation = document.getElementById("cookieUsername");
+                cookieValidation.textContent = "Username : " + document.cookie.slice(9)
+            }
+            if(UserbyCookies == "False"){
+                console.log("Pass: Third Condotion❌")
+                document.getElementById("cookieUsername").style.display = "none";
+            }
+        }
+        else if(document.cookie == ""){
+            console.log("Pass: Fourth Condotion❌")
+            document.getElementById("cookieUsername").style.display = "none";
+        }
+    </script>
 
 
 

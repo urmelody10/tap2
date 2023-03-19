@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
     <title>TAP RATIO | assignment</title>
     
     <style>
-      h1 {
-      text-align: center;
+      body {
+        font-family: 'Rajdhani', sans-serif;
+        text-align: center;
       }
 ul {
           list-style-type: none;
@@ -56,14 +58,37 @@ ul {
     
 </head>
   <body>
-    <h1>add assignment</h1>
+    
 
 
-    <form>
+    <h1 class="set">TAP RATIO </h1>
+      
+    <ul>
+      
+      <li><a href="/">Home</a></li>
+      <li><a href="mood">Mood</a></li>
+      <li><a href="add">Add assignment</a></li>
+       <li><a href="assignment">assignment</a></li>
+      <li><a href="todo">To do today</a></li>
+      <li><a href="login">Login</a></li>
+      <li><a href="register">Signup</a></li>
+    </ul>
+
+
+    
+    
+    <h2>add assignment</h2>
+    
+    <form id="task" 
+      action="/assignment"
+      method="POST">
+      <!-- enctype="multipart/form-data"> -->
+  
         <label for="tname">Assignment name:</label><br>
         <input type="text" id="tname"><br>
-
+        <h1>     </h1>
         <label for="duedate">duedate:</label>
+        <input type="date" name="duedate" />
        
         <br><br>
         <input type="submit" value="Submit">

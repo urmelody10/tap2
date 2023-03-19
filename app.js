@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const products = require('./models/Product');
 const overried = require('method-override');
 const bodyParser = require('body-parser');
-const { findByUsername } = require('./models/Product');
+const { findByUsername, db } = require('./models/Product');
 const socketio = require("socket.io");
 const console = require('console');
 
@@ -57,56 +57,24 @@ app.use(bodyParser.json())
 
 app.use(cookieParser())
 
-
-
-
-
-
 //home///
 
-app.get("/",(req,res)=>{
-  res.render("welcom")
-});
- app.post("/", async function(req, res){
-  const user= req.cookie.username
-  console.log(user)
- })
-
-
-app.get("/mood",(req,res) =>{
-  res.render("mood")
-});
-
-
-
-
-app.get("/add",(req,res) =>{
-  res.render("task")
+app.get("/", async (req, res) => {
+  let username = req.cookies.username
+  let user = await products.find({username: username})
+  console.log("Check Cookie: "+req.cookies.username)
+  if(typeof user[0] !== "undefined"){
+    if(user[0].username == req.cookies.username) {
+      console.log("Check Cookie result: User exist in DB")
+      res.render("welcom", {UserbyCookie: "True"})
+    }
+  }
+  else{
+    console.log("Check Cookie result: User not exist")
+    res.render("welcom", {UserbyCookie:"False"})
+  }
 });
 
-
-
-
-app.get("/todo",(req,res) =>{
-  res.render("todo")
-});
-
-app.get("/assignment",(req,res) =>{
-  res.render("assignment")
-});
-
-app.get("/mood_history",(req,res) =>{
-  res.render("mood_history")
-});
-app.post("/mood_history", async function(req, res){
-  var data = req.body
-  data = Object.values(data)
-  var user = await products.find({})
-  arr = user[0].mood
-  arr.push(data[0])
-  
-  
-})
 
 
 
@@ -133,6 +101,7 @@ app.post("/login", async function(req, res){
       const user = await products.findOne({ username: req.body.username });
       var username= req.body.username
       var psw = req.body.psw
+      
       console.log(user)
       console.log(username)
       console.log(psw)
@@ -169,12 +138,14 @@ app.post("/login", async function(req, res){
       }
       res.render("login_successfull")
       console.log('Cookies: ', req.cookies.username)
+
+     
+      
     })
 
 
  
   
-
 
 
 app.get("/register", (req, res) =>{
@@ -194,6 +165,7 @@ app.post("/register",async (req,res, next)=>{
   let username = req.body.username;
   let psw = req.body.psw;
   let existUsername = await products.find({username: username})
+  
   console.log(username)
   console.log(psw)
   console.log(existUsername)
@@ -213,5 +185,66 @@ app.post("/register",async (req,res, next)=>{
 
   console.log(username)
   console.log(psw)
+  
+
+  
+  
+
+
+});
+
+
+
+
+
+
+app.get("/mood",async(req,res) =>{
+  res.render("mood")
+  let username = cookies
+  
+  
+});
+
+  app.post("/mood",async(req,res) =>{
+   
+  });
+  
+  
+  
+  
+  
+
+
+
+
+app.get("/add",(req,res) =>{
+  res.render("task")
+});
+
+
+
+
+
+app.get("/todo",(req,res) =>{
+  res.render("todo")
+});
+
+app.get("/assignment",(req,res) =>{
+  res.render("assignment")
+});
+
+app.get("/mood_history",(req,res) =>{
+  res.render("mood_history")
+});
+app.post("/mood_history", async function(req, res){
+  let existUsername = await products.find({username: username})
+  var myData = new User(req.body);
+  myData.save()
+    .then(item => {
+      res.send("item saved to database");
+    })
+    .catch(err => {
+      res.status(400).send("unable to save to database");
+    });
 });
 
