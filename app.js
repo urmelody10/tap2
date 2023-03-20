@@ -222,7 +222,7 @@ app.get("/mood",async(req,res) =>{
 });
 
 app.post("/mood",async(req,res) =>{
- 
+  
 
 });
   
@@ -230,38 +230,45 @@ app.post("/mood",async(req,res) =>{
 
 
 app.post("/mood_history",async(req,res) =>{
-  let username = req.cookies.username
-  let mood = req.body
-  let user = await products.find({username: username})
-  if(typeof user[0] !== "undefined"){
-  if (mood[0]) {
-    console.log("Done: User Data saved")
-    products.findOneAndUpdate([{
-      
-      mood: req.body
-    }])
-    res.render("mood_history")
-}
+  var username = req.cookies.username // request username from cookie
+  var newMood = req.body // request user's mood from front-end
+  newMood = Object.values(newMood) // analyze data
+  var user = await products.find({username: username}) // find user from database
+  
  
-  console.log(mood)
-  
-}});
-  
-  
-  app.get("/mood_history",(req,res) =>{
-    res.render("mood_history")
-  });
-
-
-
-  app.post("/mood_history", async function(req, res){
-    
-    
+  if(user[0]){ // check user
+      if (user[0].mood) { // check mood in user
+          var arr = user[0].mood // new mood array
+          arr.push(newMood[0]) // add new mood to array
+          await products.findOneAndUpdate({username:username},{$set:{mood:arr}}) // update new array to database
+          console.log("Done: User Data saved")
+          var data = await products.find({username:username}) // find user's data for lastest data
+          data = data[0].mood // all mood
+          res.render("mood_history",{allMood:data}) // render and sent all mood to "mood_history"
+      }else{ // cannot find mood in that user, mood error, something error with that user
+          console.log("Something error with mood.")
+      }
+  }else{ // cannot find user or something error with username
+      console.log("User not exit.")
   }
-   
+  console.log(newMood)
+  
+});
+  
+  
+app.get("/mood_history",async(req,res) =>{
+  var username = req.cookies.username // get username from cookie
+  var user = await products.find({username: username}) // find user from database
+  var allMood = user[0].mood // get mood from user
+  
+  
+  
+  res.render("mood_history",{allMood:allMood}) // render and sent allMood to "mood_history"
+});
 
 
-  );
+
+  
   
   
   
@@ -270,13 +277,60 @@ app.post("/mood_history",async(req,res) =>{
 ////task/////////
 
 
-app.get("/add",(req,res) =>{
-  res.render("task")
+app.get("/add",async(req,res) =>{
+  let username = req.cookies.username
+  let user = await products.find({username: username})
+  let newTask = req.body.tname
+  let duedate = req.body.duedate
+
+  console.log("Check Cookie: "+req.cookies.username)
+
+
+  if(typeof user[0] !== "undefined"){
+    if(user[0].username == req.cookies.username) {
+      console.log("Check Cookie result: User exist in DB")
+    
+      
+      res.render("task", {UserbyCookie: "True"})
+    }
+  }
+  else{
+    console.log("Check Cookie result: User not exist")
+    res.render("task", {UserbyCookie:"False"})
+  }
+  console.log(newTask)
+  console.log(duedate)
+
 });
 
 
 
+app.post("/add",async(req,res) =>{
+  var username = req.cookies.username // request username from cookie
+  var allTask = req.body // request user's mood from front-end
+  newTask = Object.values(newTask) // analyze data
+  var user = await products.find({username: username}) // find user from database
+  
+ 
+  if(user[0]){ // check user
+      if (user[0].mood) { // check mood in user
+          var arr = user[0].mood // new mood array
+          arr.push(newMood[0]) // add new mood to array
+          await products.findOneAndUpdate({username:username},{$set:{assignment:arr}}) // update new array to database
+          console.log("Done: User Data saved")
+          var data = await products.find({username:username}) // find user's data for lastest data
+          data = data[0].mood // all mood
+          res.render("task",{allTask:data}) // render and sent all mood to "task"
+      }else{ // cannot find mood in that user, mood error, something error with that user
+          console.log("Something error with task.")
+      }
+  }else{ // cannot find user or something error with username
+      console.log("User not exit.")
+  }
+  console.log(newTask)
+  
 
+});
 
 app.get("/todo",(req,res) =>{
   res.render("todo")
