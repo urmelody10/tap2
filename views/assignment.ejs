@@ -1,12 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+    <title>TAP RATIO | assignment</title>
+    <style>
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Rajdhani', sans-serif;
+        text-align: center;
+      }
+    ul {
+          list-style-type: none;
+          margin: 10;
+          padding: 20;
+          overflow: hidden;
+          background-color: #0f1554;
+        }
+        
+        li {
+          float: left;
+        }
+        
+        li a {
+          border-radius: 25px;
+          display: block;
+          color: #ffffff;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          
+        }
+        
+        li a:hover:not(.active) {
+          background-color: #141a5f;
+        }
+        
+        .active {
+          background-color: #141a5f;
+        }
+
+        .what_is {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          grid-column-gap: 0px;
+          grid-row-gap: 0px;
+        }
+
+        .div1 { grid-area: 4 / 1 / 5 / 2; }
+        .div2 { grid-area: 4 / 2 / 5 / 3; }
+
+
+
+    </style>
+</head>    
+
 <body>
+    <h1 class="set" >TAP RATIO</h1>
+    <ul>
+        <li><a href="/" style="float: left;">Home</a></li>
+        <li><a href="mood" style="float: left;">Mood</a></li>
+        <li><a href="add" style="float: left;">Add assignment</a></li>
+         <li><a href="assignment" style="float: left;">assignment</a></li>
+        <li><a href="todo" style="float: left;">To do today</a></li>
+        <li><a href="login" style="float: left;">Login</a></li>
+        <li><a href="register" style="float: left;">Signup</a></li>
+    </ul>
     
+    <h2>Assignment</h2>
+
+    <div class="Assignment_list">
+        <div class="Assignment_child">
+            <div class="date">
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

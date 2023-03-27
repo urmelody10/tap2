@@ -237,18 +237,14 @@ app.get("/add", async (req, res) => {
     if (user[0].username == req.cookies.username) {
       console.log("Check Cookie result: User exist in DB");
 
-      res.render("task", { UserbyCookie: "True", newTask: newTask , newDue: newDue});
+      res.render("task", { UserbyCookie: "True", newTask: newTask , newDue: newDue, status : 200, alert : "DD"});
     }
   } else {
     console.log("Check Cookie result: User not exist");
-    res.render("task", { UserbyCookie: "False", newTask: newTask, newDue: newDue });
+    res.render("task", { UserbyCookie: "False", newTask: newTask, newDue: newDue, status : 200, alert : "Please SignIn" });
   }
   console.log(newTask)
   console.log(newDue)
-});
-
-app.post("/add", async (req, res) =>{
-  res.render("task")
 });
 
 app.post("/assignment", async (req, res) => {
@@ -273,10 +269,7 @@ app.post("/assignment", async (req, res) => {
       }
   
     );
-    res.render("task", {
-      alert : "Save your data! Please Check in your box."
-    })
-    console.log()
+    res.redirect("/assignment")
   } else {
     res.redirect('/login')
   }
@@ -288,12 +281,12 @@ app.post("/assignment", async (req, res) => {
     var user = await products.find({ username: username }); 
     var allTask = user[0].assignment; 
     var allDue = user[0].duedate;
-    res.render("assignment", { allTask: allTask , allDue: allDue});
+    res.render("assignment", { allTask: allTask , allDue: allDue, alert : undefined});
   })
 
 /////// Todo
 app.get("/todo", async (req, res) => {
-  
+  res.render("todo")
   var username = req.cookies.username;
   var obj = [];
   if (username) {
@@ -307,6 +300,8 @@ app.get("/todo", async (req, res) => {
       res.json(obj)
     })
   } else {
-    res.redirect('/login');
+    res.render('/login');
   }
+ 
 })
+
