@@ -5,9 +5,11 @@ const ProductSchema = new mongoose.Schema({
     psw:{type:String},
     mood:{type:Array},
     assignment:{type:Array},
-    duedate  :{type:Date} ,
-    priority :{type:String}
-
+ 
 })
+
+// ------Noscript
+// duedate  :{type:Date} ,
+// priority :{type:String}
 
 module.exports = mongoose.model('users', ProductSchema)
